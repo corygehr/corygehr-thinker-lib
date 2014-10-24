@@ -2,7 +2,7 @@
  	"name": "thon/thinker",
   	"description": "THINKer Framework Core Library",
  	"type": "library",
- 	"keywords": ["framework, thon"],
+ 	"keywords": ["framework", "thon"],
  	"homepage": "https://github.com/penn-state-dance-marathon/thon-thinker",
  	"license": "BSD-3-Clause",
  	"authors": [
