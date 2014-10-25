@@ -1,5 +1,5 @@
  {
- 	"name": "thon/thinker/lib",
+ 	"name": "thon/thinker-lib",
   	"description": "THINKer Framework Core Library",
  	"type": "library",
  	"keywords": ["framework", "thon"],
