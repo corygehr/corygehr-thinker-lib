@@ -6,7 +6,7 @@
 	 * @author Cory Gehr
 	 */
 
-use Thinker;
+namespace Thinker;
 
 class Request {
 
