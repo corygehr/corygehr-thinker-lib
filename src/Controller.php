@@ -60,13 +60,13 @@ abstract class Controller
 	}
 
 	/**
-	 * getDefaultSubsection()
+	 * defaultSubsection()
 	 * Gets the default subsection for this section
 	 *
 	 * @access public
 	 * @return string Default Subsection Name
 	 */
-	public function getDefaultSubsection()
+	public function defaultSubsection()
 	{
 		return $this->defaultSubsection;
 	}
