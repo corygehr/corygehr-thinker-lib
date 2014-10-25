@@ -10,10 +10,11 @@ namespace Thinker;
 
 abstract class Controller
 {
+	private $defaultSubsection; // Default Subsection to load when none is specified
 	protected $reflectionClass; // Contains information about the class (ReflectionClass)
 	protected $data;            // Contains the data being passed back from the Section
-	public $session;         // Contains session object
-	public $view;      // Contains the view being loaded for the section
+	public $session;       		// Contains session object
+	public $view;      			// Contains the view being loaded for the section
 	
 	/**
 	 * __construct()
@@ -24,8 +25,6 @@ abstract class Controller
 	 */
 	public function __construct()
 	{
-		global $_SECTION, $_SUBSECTION;
-
 		// Initialize classInfo with information about the target class
 		$this->reflectionClass = new ReflectionClass($this);
 		$this->data = array();
@@ -41,15 +40,35 @@ abstract class Controller
 		}
 
 		// Get the session information
-		$sessionClass = SESSION_CLASS;
-		
+		if(SESSION_CLASS)
+		{
+			$sessionClass = SESSION_CLASS;
+		}
+		else
+		{
+			// No session specified, assume open site
+			$sessionClass = 'Open';
+		}
+			
 		$this->session = $sessionClass::singleton();
 
 		if(!$this->session->auth('section', array('section' => $_SECTION, 'subsection' => $_SUBSECTION)))
 		{
 			// Redirect to error
-			errorRedirect(403);
+			Redirect::error(403);
 		}
+	}
+
+	/**
+	 * getDefaultSubsection()
+	 * Gets the default subsection for this section
+	 *
+	 * @access public
+	 * @return string Default Subsection Name
+	 */
+	public function getDefaultSubsection()
+	{
+		return $this->defaultSubsection;
 	}
 
 	/**
