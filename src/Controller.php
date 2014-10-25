@@ -8,6 +8,8 @@
 	 
 namespace Thinker;
 
+use \ReflectionClass;
+
 abstract class Controller
 {
 	protected $reflectionClass; // Contains information about the class (ReflectionClass)
