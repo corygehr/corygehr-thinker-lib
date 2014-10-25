@@ -26,12 +26,47 @@ abstract class Model
 	}
 	
 	/**
+	 * __get()
+	 * Gets a value from this Model
+	 *
+	 * @access public
+	 * @param string $varName Variable Name
+	 * @return mixed Variable Value, or NULL if it doesn't exist
+	 */
+	public function __get($varName)
+	{
+		if(isset($this->$varName))
+		{
+			return $this->$varName;
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	/**
+	 * __set()
+	 * Sets a value on this Model
+	 *
+	 * @access public
+	 * @param string $varName Variable Name
+	 * @param mixed $val: Value
+	 * @return mixed Value being assigned
+	 */
+	public function __set($varName, $val)
+	{
+		$this->$varName = $val;
+		return $val;
+	}
+
+	/**
 	 * toArray()
 	 * Returns an object's variables as an associative array
 	 * 
 	 * @author Joe Stump <joe@joestump.net>
 	 * @access public
-	 * @return Array of Variables (VarName => Value)
+	 * @return mixed[] Array of Variables (VarName => Value)
 	 */
 	public function toArray()
 	{

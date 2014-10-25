@@ -18,43 +18,29 @@ class View
 	 * @author Cory Gehr
 	 * @access public
 	 * @static
-	 * @param $view: View we want to use
-	 * @param $section: Section being displayed
+	 * @param string $view Name of view we want to use
+	 * @param Controller $section Section being displayed
 	 * @return View of Section, or Error on Failure
 	 */
-	public static function factory($view, Section $section)
+	public static function factory($view, Controller $section)
 	{
-		// Generate the View's File Name
-		$viewFile = __DIR__."/View/$view/$view.php";
-		
-		// Attempt to include the View
-		if(include($viewFile))
+		// Ensure specified view exists
+		if(class_exists(\View\$view))
 		{
-			// View Class Name
-			$viewClass = 'THINKER_View_' . $view;
-			
-			// Create the new class if it exists
-			if(class_exists($viewClass))
+			// Create the view with the section as its parameter
+			try
 			{
-				// Create the view with the model as its parameter
-				$view = new $viewClass($section);
-				// Ensure we have a valid view
-				if($view instanceof Common)
-				{
-					// Return the view
-					return $view;
-				}
+				return new \View\$view($section);
 			}
-			else
+			catch(Exception $ex)
 			{
-				// Throw an exception
-				throw new Exception("View could not be loaded.");
+				trigger_error("Could not load View '$view'.");
 			}
 		}
 		else
 		{
 			// Throw an exception
-			throw new Exception("Specified View File does not exist.");
+			throw new Exception("Specified View does not exist.");
 		}
 		
 	}

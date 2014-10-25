@@ -14,7 +14,6 @@ abstract class Controller
 	protected $data;            // Contains the data being passed back from the Section
 	public $session;         // Contains session object
 	public $view;      // Contains the view being loaded for the section
-	private $defaultSubsection;
 	
 	/**
 	 * __construct()
@@ -25,6 +24,8 @@ abstract class Controller
 	 */
 	public function __construct()
 	{
+		global $_SECTION, $_SUBSECTION;
+
 		// Initialize classInfo with information about the target class
 		$this->reflectionClass = new ReflectionClass($this);
 		$this->data = array();
@@ -39,100 +40,43 @@ abstract class Controller
 			$this->view = DEFAULT_VIEW;
 		}
 
-		// Get the session information, if available
-		if(SESSION_CLASS)
-		{
-			$sessionClass = SESSION_CLASS;
-			
-			$this->session = \Session\$sessionClass::singleton();
+		// Get the session information
+		$sessionClass = SESSION_CLASS;
+		
+		$this->session = $sessionClass::singleton();
 
-			if(!$this->session->auth('section', array('section' => SECTION, 'subsection' => SUBSECTION)))
-			{
-				// Redirect to error
-				errorRedirect(403);
-			}
-		}
-		else
+		if(!$this->session->auth('section', array('section' => $_SECTION, 'subsection' => $_SUBSECTION)))
 		{
-			// No Session
-			$this->session = \Session\Open::singleton();
+			// Redirect to error
+			errorRedirect(403);
 		}
 	}
 
 	/**
-	 * __get()
-	 * Gets a value from this object
-	 *
-	 * @access public
-	 * @param string $name Name of the Variable
-	 * @return mixed Variable Value, or NULL on non-existence
-	 */
-	public function __get($name)
-	{
-		if(isset($this->$name))
-		{
-			return $this->$name;
-		}
-		else
-		{
-			return null;
-		}
-	}
-
-	/**
-	 * __set()
-	 * Sets a value on this object
-	 *
-	 * @access public
-	 * @param string $name Name of the Variable
-	 * @param mixed $value Variable Value
-	 * @return mixed Passed Value
-	 */
-	public function __set($name, $value)
-	{
-		$this->$name = $value;
-
-		return $value;
-	}
-
-	/**
-	 * defaultSubsection()
-	 * Returns the name of the default subsection for this controller
-	 *
-	 * @access public
-	 * @static
-	 * @return string Subsection Name
-	 */
-	public static function defaultSubsection()
-	{
-		return $this->defaultSubsection;
-	}
-
-	/**
-	 * getAllVals()
+	 * getData()
 	 * Passes back the data array from this section
 	 *
 	 * @access public
-	 * @return array Data from Section
+	 * @return mixed[] Data Array
 	 */
-	public function getAllVals()
+	public function getData()
 	{
 		return $this->data;
 	}
 
 	/**
 	 * getVal()
-	 * Gets a value in the local data array
+	 * Gets a value from this object
 	 *
 	 * @access public
-	 * @param string $key Array Key
-	 * @return mixed Key Value, or NULL if it doesn't exist
+	 * @param string $name Name of the Variable
+	 * @return mixed Variable Value, or NULL on non-existence
 	 */
-	public function setVal($key, $value)
+	public function getVal($name)
 	{
-		if(isset($this->data[$key]))
+		if(isset($this->data[$name]))
 		{
-			return $this->data[$key];
+			return $this->data[$name];
 		}
 		else
 		{
@@ -141,18 +85,16 @@ abstract class Controller
 	}
 
 	/**
-	 * setVal()
+	 * set()
 	 * Sets a value in the local data array
 	 *
 	 * @access public
-	 * @param string $key Array Key
-	 * @param mixed $value Value
-	 * @return mixed Passed Value
+	 * @param $key: Array key
+	 * @param $value: Value
 	 */
-	public function setVal($key, $value)
+	public function set($key, $value)
 	{
 		$this->data[$key] = $value;
-		return $value;
 	}
 
 	/**
@@ -161,7 +103,7 @@ abstract class Controller
 	 * 
 	 * @author Joe Stump <joe@joestump.net>
 	 * @access public
-	 * @return array Variables Array (VarName => Value)
+	 * @return Array of Variables (VarName => Value)
 	 */
 	public function toArray()
 	{

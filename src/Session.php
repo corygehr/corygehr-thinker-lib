@@ -65,8 +65,8 @@ class Session
 	 *
 	 * @author Cory Gehr
 	 * @access public
-	 * @param $var: Index in $_SESSION (can be a Key ex: email)
-	 * @return Session Details
+	 * @param string $var Index in $_SESSION (can be a Key ex: email)
+	 * @return mixed Session Details
 	 */
 	public function __get($var)
 	{
@@ -78,9 +78,9 @@ class Session
 	 * Sets a session variable
 	 *
 	 * @access public
-	 * @param $var: Session Variable Name
-	 * @param $val: Value to set Variable to
-	 * @return True if Successful, False if Failure
+	 * @param string $var Session Variable Name
+	 * @param string $val Value to set Variable to
+	 * @return boolean True if Successful, False if Failure
 	 */
 	public function __set($var, $val)
 	{
@@ -93,8 +93,8 @@ class Session
 	 *
 	 * @author Cory Gehr
 	 * @access public
-	 * @param $objType: Object Type (default: section)
-	 * @param $params: Object parameters (default: Empty Array)
+	 * @param string $objType Object Type (default: section)
+	 * @param string[] $params Object parameters (default: Empty Array)
 	 * @return True if Granted, False if Denied
 	 */
 	public function auth($objType = 'section', $params = array())
@@ -145,8 +145,8 @@ class Session
 	 * Checks for the existence of a Session Variable
 	 *
 	 * @access public
-	 * @param $var: Session Variable Name
-	 * @return True if Exists, False if Nonexistent
+	 * @param string $var Session Variable Name
+	 * @return boolean True if Exists, False if Nonexistent
 	 */
 	public function varExists($var)
 	{
@@ -158,8 +158,8 @@ class Session
 	 * Verifies that a csrfToken input matches that for the session
 	 *
 	 * @access public
-	 * @param $inputVarName: Name of the CSRF Token Parameter (default: csrfToken)
-	 * @return True if Valid Token, False if Invalid
+	 * @param string $inputVarName Name of the CSRF Token Parameter (default: csrfToken)
+	 * @return boolean True if Valid Token, False if Invalid
 	 */
 	public function verifyCsrfToken($inputVarName = 'csrfToken')
 	{
