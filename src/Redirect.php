@@ -30,7 +30,7 @@ class Redirect {
 	 * @static
 	 * @param int $no Error Number (default: 404)
 	 */
-	public static function errorRedirect($no = 404)
+	public static function error($no = 404)
 	{
 		// Call current redirect function
 		Redirect::go('Error', 'info', array('no' => $no));

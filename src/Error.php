@@ -34,7 +34,7 @@ class Error {
 	 * @param int $errLine Error Line
 	 * @param mixed[] $errContext Error Context Array
 	 */
-	public static function thinkerErrorHandler($errNo, $errMsg, $errFile, $errLine, $errContext)
+	public static function errorHandler($errNo, $errMsg, $errFile, $errLine, $errContext)
 	{
 		if ($errNo == E_USER_ERROR || $errNo == E_ERROR || $errNo == E_CORE_ERROR)
 		{
