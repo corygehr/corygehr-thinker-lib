@@ -14,6 +14,7 @@ abstract class Controller
 	protected $data;            // Contains the data being passed back from the Section
 	public $session;         // Contains session object
 	public $view;      // Contains the view being loaded for the section
+	private $defaultSubsection;
 	
 	/**
 	 * __construct()
@@ -24,8 +25,6 @@ abstract class Controller
 	 */
 	public function __construct()
 	{
-		global $_SECTION, $_SUBSECTION;
-
 		// Initialize classInfo with information about the target class
 		$this->reflectionClass = new ReflectionClass($this);
 		$this->data = array();
@@ -40,43 +39,39 @@ abstract class Controller
 			$this->view = DEFAULT_VIEW;
 		}
 
-		// Get the session information
-		$sessionClass = SESSION_CLASS;
-		
-		$this->session = $sessionClass::singleton();
-
-		if(!$this->session->auth('section', array('section' => $_SECTION, 'subsection' => $_SUBSECTION)))
+		// Get the session information, if available
+		if(SESSION_CLASS)
 		{
-			// Redirect to error
-			errorRedirect(403);
+			$sessionClass = SESSION_CLASS;
+			
+			$this->session = \Session\$sessionClass::singleton();
+
+			if(!$this->session->auth('section', array('section' => SECTION, 'subsection' => SUBSECTION)))
+			{
+				// Redirect to error
+				errorRedirect(403);
+			}
+		}
+		else
+		{
+			// No Session
+			$this->session = \Session\Open::singleton();
 		}
 	}
 
 	/**
-	 * getData()
-	 * Passes back the data array from this section
-	 *
-	 * @access public
-	 * @return Data Array
-	 */
-	public function getData()
-	{
-		return $this->data;
-	}
-
-	/**
-	 * getVal()
+	 * __get()
 	 * Gets a value from this object
 	 *
 	 * @access public
-	 * @param $name: Name of the Variable
-	 * @return Variable Value, or NULL on non-existence
+	 * @param string $name Name of the Variable
+	 * @return mixed Variable Value, or NULL on non-existence
 	 */
-	public function getVal($name)
+	public function __get($name)
 	{
-		if(isset($this->data[$name]))
+		if(isset($this->$name))
 		{
-			return $this->data[$name];
+			return $this->$name;
 		}
 		else
 		{
@@ -85,16 +80,79 @@ abstract class Controller
 	}
 
 	/**
-	 * set()
+	 * __set()
+	 * Sets a value on this object
+	 *
+	 * @access public
+	 * @param string $name Name of the Variable
+	 * @param mixed $value Variable Value
+	 * @return mixed Passed Value
+	 */
+	public function __set($name, $value)
+	{
+		$this->$name = $value;
+
+		return $value;
+	}
+
+	/**
+	 * defaultSubsection()
+	 * Returns the name of the default subsection for this controller
+	 *
+	 * @access public
+	 * @static
+	 * @return string Subsection Name
+	 */
+	public static function defaultSubsection()
+	{
+		return $this->defaultSubsection;
+	}
+
+	/**
+	 * getAllVals()
+	 * Passes back the data array from this section
+	 *
+	 * @access public
+	 * @return array Data from Section
+	 */
+	public function getAllVals()
+	{
+		return $this->data;
+	}
+
+	/**
+	 * getVal()
+	 * Gets a value in the local data array
+	 *
+	 * @access public
+	 * @param string $key Array Key
+	 * @return mixed Key Value, or NULL if it doesn't exist
+	 */
+	public function setVal($key, $value)
+	{
+		if(isset($this->data[$key]))
+		{
+			return $this->data[$key];
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	/**
+	 * setVal()
 	 * Sets a value in the local data array
 	 *
 	 * @access public
-	 * @param $key: Array key
-	 * @param $value: Value
+	 * @param string $key Array Key
+	 * @param mixed $value Value
+	 * @return mixed Passed Value
 	 */
-	public function set($key, $value)
+	public function setVal($key, $value)
 	{
 		$this->data[$key] = $value;
+		return $value;
 	}
 
 	/**
@@ -103,7 +161,7 @@ abstract class Controller
 	 * 
 	 * @author Joe Stump <joe@joestump.net>
 	 * @access public
-	 * @return Array of Variables (VarName => Value)
+	 * @return array Variables Array (VarName => Value)
 	 */
 	public function toArray()
 	{
