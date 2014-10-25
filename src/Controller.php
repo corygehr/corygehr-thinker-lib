@@ -10,7 +10,6 @@ namespace Thinker;
 
 abstract class Controller
 {
-	private $defaultSubsection; // Default Subsection to load when none is specified
 	protected $reflectionClass; // Contains information about the class (ReflectionClass)
 	protected $data;            // Contains the data being passed back from the Section
 	public $session;       		// Contains session object
@@ -63,13 +62,11 @@ abstract class Controller
 	 * defaultSubsection()
 	 * Gets the default subsection for this section
 	 *
+	 * @abstract
 	 * @access public
 	 * @return string Default Subsection Name
 	 */
-	public function defaultSubsection()
-	{
-		return $this->defaultSubsection;
-	}
+	abstract public static function defaultSubsection();
 
 	/**
 	 * getData()
