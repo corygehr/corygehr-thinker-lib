@@ -15,7 +15,7 @@ abstract class Controller
 	protected $reflectionClass; // Contains information about the class (ReflectionClass)
 	protected $data;            // Contains the data being passed back from the Section
 	public $session;       		// Contains session object
-	public $view;      			// Contains the view being loaded for the section
+	public $view;     			// Contains the view being loaded for the section
 	
 	/**
 	 * __construct()

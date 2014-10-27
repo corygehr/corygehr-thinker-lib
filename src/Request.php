@@ -59,7 +59,7 @@ class Request {
 	public static function get($name, $required = false, $allowHtml = false)
 	{
 		$val = (isset($_GET[$name]) == true ? $_GET[$name] : null);
-
+		
 		if(isset($val))
 		{
 			// Sanitize

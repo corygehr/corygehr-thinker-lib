@@ -9,6 +9,8 @@
 
 namespace Thinker;
 
+use \Exception;
+
 class View
 {
 	/**
@@ -25,12 +27,12 @@ class View
 	public static function factory($view, Controller $section)
 	{
 		// Ensure specified view exists
-		if(class_exists(\View\$view))
+		if(class_exists($view))
 		{
 			// Create the view with the section as its parameter
 			try
 			{
-				return new \View\$view($section);
+				return new $view($section);
 			}
 			catch(Exception $ex)
 			{
@@ -40,7 +42,7 @@ class View
 		else
 		{
 			// Throw an exception
-			throw new Exception("Specified View does not exist.");
+			throw new Exception("Specified view '$view' does not exist.");
 		}
 		
 	}
