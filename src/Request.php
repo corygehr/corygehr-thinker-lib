@@ -12,7 +12,7 @@ class Request {
 
 	/**
 	 * __construct()
-	 * Constructor for the Thinker\Support class
+	 * Constructor for the Thinker\Request class
 	 * This is intentionally private, so that it cannot be 
 	 * 	instantiated
 	 *
