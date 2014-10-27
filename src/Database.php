@@ -2,7 +2,6 @@
 	/**
 	 * Database.php
 	 * Contains the Thinker\Database class (extends the PHP PDO class)
-	 * Note that this is the only class that does NOT extend from other (locally created) objects
 	 *
 	 * @author Cory Gehr
 	 */
@@ -28,7 +27,7 @@ class Database extends PDO
 	 * Constructor for the Thinker\Database Class
 	 *
 	 * @access public
-	 * @param $settings: Connection Settings
+	 * @param string[] $settings Connection Settings
 	 */
 	public function __construct($settings)
 	{ 
@@ -59,9 +58,9 @@ class Database extends PDO
 	 * Opens a connection to the database
 	 *
 	 * @author Cory Gehr
-	 * @param $dieOnError: Kills script execution on Exception (default: false)
 	 * @access public
-	 * @return True on Success, False on Failure
+	 * @param boolean $dieOnError Kills script execution on Exception (default: false)
+	 * @return boolean True on Success, False on Failure
 	 */
 	public function connect($dieOnError = false)
 	{
@@ -98,9 +97,9 @@ class Database extends PDO
 	 *
 	 * @author Cory Gehr
 	 * @access public
-	 * @param $query: MySQL Query String
-	 * @param $data: Parameters for the query
-	 * @return Boolean value based on query success
+	 * @param string $query MySQL Query String
+	 * @param mixed[] $data Parameters for the query
+	 * @return boolean True on Success, False on Failure
 	 */
 	public function doQuery($query, $data = null)
 	{
@@ -117,9 +116,9 @@ class Database extends PDO
 	 *
 	 * @author Cory Gehr
 	 * @access public
-	 * @param $query: MySQL Query String
-	 * @param $data: Parameters for the query
-	 * @return Single database value
+	 * @param string $query MySQL Query String
+	 * @param mixed[] $data Parameters for the query
+	 * @return mixed Single database value
 	 */
 	public function doQueryAns($query, $data = null)
 	{
@@ -138,9 +137,9 @@ class Database extends PDO
 	 *
 	 * @author Cory Gehr
 	 * @access public
-	 * @param $query: MySQL Query String
-	 * @param $data: Parameters for the query
-	 * @return Array of database values
+	 * @param string $query MySQL Query String
+	 * @param mixed[] $data Parameters for the query
+	 * @return mixed[] Array of database values
 	 */
 	public function doQueryArr($query, $data = null)
 	{
@@ -161,9 +160,9 @@ class Database extends PDO
 	 *
 	 * @author Cory Gehr
 	 * @access public
-	 * @param $query: MySQL Query String
-	 * @param $data: Parameters for the query
-	 * @return Database data row
+	 * @param string $query MySQL Query String
+	 * @param mixed[] $data Parameters for the query
+	 * @return mixed[] Database data row
 	 */
 	public function doQueryOne($query, $data = null)
 	{
