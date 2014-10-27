@@ -22,8 +22,6 @@ class Session
 	 */
 	protected function __construct()
 	{
-		global $_INFO;
-
 		// Start session
 		session_start();
 
@@ -163,6 +161,6 @@ class Session
 	 */
 	public function verifyCsrfToken($inputVarName = 'csrfToken')
 	{
-		return (getPageVar($inputVarName, 'str', 'REQUEST', true, false) == $_SESSION['CSRF_TOKEN']);
+		return (Request::request($inputVarName, true) == $_SESSION['CSRF_TOKEN']);
 	}
 }

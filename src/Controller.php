@@ -33,7 +33,7 @@ abstract class Controller
 		// Override view if necessary
 		if(isset($_GET['view']))
 		{
-			$this->view = getPageVar('view', 'str', 'GET', true);
+			$this->view = Request::get('view', true);
 		}
 		else
 		{
