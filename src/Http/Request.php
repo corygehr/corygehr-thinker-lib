@@ -1,18 +1,18 @@
 <?php
 	/**
 	 * Request.php
-	 * Contains the Thinker\Request class
+	 * Contains the Thinker\Http\Request class
 	 *
 	 * @author Cory Gehr
 	 */
 
-namespace Thinker;
+namespace Thinker\Http;
 
 class Request {
 
 	/**
 	 * __construct()
-	 * Constructor for the Thinker\Request class
+	 * Constructor for the Thinker\Http\Request class
 	 * This is intentionally private, so that it cannot be 
 	 * 	instantiated
 	 *

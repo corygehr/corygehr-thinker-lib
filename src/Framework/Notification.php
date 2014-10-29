@@ -1,18 +1,18 @@
 <?php
 	/**
 	 * Notification.php
-	 * Contains the Thinker\Notification class
+	 * Contains the Thinker\Framework\Notification class
 	 *
 	 * @author Cory Gehr
 	 */
 
-namespace Thinker;
+namespace Thinker\Framework;
 
 class Notification {
 
 	/**
 	 * __construct()
-	 * Constructor for the Thinker\Notification class
+	 * Constructor for the Thinker\Framework\Notification class
 	 * This is intentionally private, so that it cannot be 
 	 * 	instantiated
 	 *

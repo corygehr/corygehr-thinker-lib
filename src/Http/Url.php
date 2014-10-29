@@ -1,18 +1,18 @@
 <?php
 	/**
 	 * Url.php
-	 * Contains the Thinker\Url class
+	 * Contains the Thinker\Http\Url class
 	 *
 	 * @author Cory Gehr
 	 */
 
-namespace Thinker;
+namespace Thinker\Http;
 
 class Url {
 
 	/**
 	 * __construct()
-	 * Constructor for the Thinker\Url class
+	 * Constructor for the Thinker\Http\Url class
 	 * This is intentionally private, so that it cannot be 
 	 * 	instantiated
 	 *

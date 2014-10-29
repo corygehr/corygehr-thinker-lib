@@ -1,13 +1,13 @@
 <?php
 	/**
 	 * View.php
-	 * Contains the Thinker\View Class that all Views will inherit
+	 * Contains the Thinker\Framework\View Class that all Views will inherit
 	 * Uses the Factory Design Pattern to generate the view
 	 * 
 	 * @author Cory Gehr
 	 */
 
-namespace Thinker;
+namespace Thinker\Framework;
 
 use \Exception;
 

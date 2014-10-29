@@ -1,12 +1,12 @@
 <?php
 	/**
 	 * Error.php
-	 * Contains the Thinker\Error class
+	 * Contains the Thinker\Framework\Error class
 	 *
 	 * @author Cory Gehr
 	 */
 
-namespace Thinker;
+namespace Thinker\Framework;
 
 class Error {
 

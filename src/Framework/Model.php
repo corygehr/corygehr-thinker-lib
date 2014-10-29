@@ -1,14 +1,12 @@
 <?php
 	/**
 	 * Model.php 
-	 * Contains the Thinker\Model class
+	 * Contains the Thinker\Framework\Model class
 	 *
 	 * @author Cory Gehr
 	 */
 
-namespace Thinker;
-
-use \ReflectionClass;
+namespace Thinker\Framework;
 
 abstract class Model
 {
@@ -16,7 +14,7 @@ abstract class Model
 	
 	/**
 	 * __construct()
-	 * Constructor for the Thinker\Model Class
+	 * Constructor for the Thinker\Framework\Model Class
 	 *
 	 * @author Cory Gehr
 	 * @access public
@@ -77,7 +75,7 @@ abstract class Model
 		
 		foreach($defaults as $var => $val)
 		{
-			if($this->$var instanceof THINKER_Model)
+			if($this->$var instanceof Model)
 			{
 				$return[$var] = $this->$var->toArray();
 			}

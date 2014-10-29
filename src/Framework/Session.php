@@ -1,12 +1,12 @@
 <?php
 	/**
 	 * Session.php 
-	 * Contains the Thinker\Session class
+	 * Contains the Thinker\Framework\Session class
 	 *
 	 * @author Cory Gehr
 	 */
 
-namespace Thinker;
+namespace Thinker\Framework;
 	 
 class Session
 {
@@ -22,6 +22,8 @@ class Session
 	 */
 	protected function __construct()
 	{
+		global $_INFO;
+
 		// Start session
 		session_start();
 
@@ -161,6 +163,6 @@ class Session
 	 */
 	public function verifyCsrfToken($inputVarName = 'csrfToken')
 	{
-		return (Request::request($inputVarName, true) == $_SESSION['CSRF_TOKEN']);
+		return (Thinker\Http\Request::request($inputVarName, true, false) == $_SESSION['CSRF_TOKEN']);
 	}
 }

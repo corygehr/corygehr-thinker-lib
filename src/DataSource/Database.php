@@ -1,15 +1,16 @@
 <?php
 	/**
 	 * Database.php
-	 * Contains the Thinker\Database class (extends the PHP PDO class)
+	 * Contains the Thinker\DataSource\Database class (extends the PHP PDO class)
 	 *
 	 * @author Cory Gehr
 	 */
 
-namespace Thinker;
+namespace Thinker\DataSource;
 
 // Need to specify PDO class namespace to use it
 use \PDO;
+use \PDOException;
 
 class Database extends PDO
 {
@@ -24,7 +25,7 @@ class Database extends PDO
 
 	/**
 	 * __construct()
-	 * Constructor for the Thinker\Database Class
+	 * Constructor for the Thinker\DataSource\Database Class
 	 *
 	 * @access public
 	 * @param string[] $settings Connection Settings
@@ -81,7 +82,7 @@ class Database extends PDO
 			}
 			else
 			{
-				pushMessage("Failed to connect to database '" . $this->schema . "'. Details: " . $err->getMessage(), 'error');
+				Thinker\Message::push("Failed to connect to database '" . $this->schema . "'. Details: " . $err->getMessage(), 'error');
 			}
 
 			return false;

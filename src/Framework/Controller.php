@@ -1,12 +1,12 @@
 <?php
 	/**
 	 * Controller.php 
-	 * Contains the Thinker\Controller class
+	 * Contains the Thinker\Framework\Controller class
 	 *
 	 * @author Cory Gehr
 	 */
 	 
-namespace Thinker;
+namespace Thinker\Framework;
 
 use \ReflectionClass;
 
@@ -19,7 +19,7 @@ abstract class Controller
 	
 	/**
 	 * __construct()
-	 * Constructor for the Thinker\Controller Class
+	 * Constructor for the Thinker\Framework\Controller Class
 	 *
 	 * @author Cory Gehr
 	 * @access public
@@ -33,8 +33,8 @@ abstract class Controller
 		// Override view if necessary
 		if(isset($_GET['view']))
 		{
-			// ucwords() formats requests so the Class name can be determined
-			$this->view = ucwords(Request::get('view', true));
+			// ucwords() allows users to use views as lowercase in URLs
+			$this->view = ucwords(Thinker\Http\Request::get('view', true));
 		}
 		else
 		{
@@ -57,7 +57,7 @@ abstract class Controller
 		if(!$this->session->auth('section', array('section' => $_SECTION, 'subsection' => $_SUBSECTION)))
 		{
 			// Redirect to error
-			Redirect::error(403);
+			Thinker\Http\Redirect::error(403);
 		}
 	}
 
@@ -131,7 +131,7 @@ abstract class Controller
 		
 		foreach($defaults as $var => $val)
 		{
-			if($this->$var instanceof Object)
+			if($this->$var instanceof Model)
 			{
 				$return[$var] = $this->$var->toArray();
 			}

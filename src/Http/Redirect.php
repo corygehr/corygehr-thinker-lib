@@ -1,18 +1,18 @@
 <?php
 	/**
 	 * Redirect.php
-	 * Contains the Thinker\Redirect class
+	 * Contains the Thinker\Http\Redirect class
 	 *
 	 * @author Cory Gehr
 	 */
 
-namespace Thinker;
+namespace Thinker\Http;
 
 class Redirect {
 
 	/**
 	 * __construct()
-	 * Constructor for the Thinker\Redirect class
+	 * Constructor for the Thinker\Http\Redirect class
 	 * This is intentionally private, so that it cannot be 
 	 * 	instantiated
 	 *
