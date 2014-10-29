@@ -33,7 +33,8 @@ abstract class Controller
 		// Override view if necessary
 		if(isset($_GET['view']))
 		{
-			$this->view = Request::get('view', true);
+			// ucwords() formats requests so the Class name can be determined
+			$this->view = ucwords(Request::get('view', true));
 		}
 		else
 		{
