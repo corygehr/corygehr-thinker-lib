@@ -1,5 +1,7 @@
-thon/thinker-lib
+thon-thinker-lib
 ============
+
+[![Build Status](https://travis-ci.org/penn-state-dance-marathon/thon-thinker-lib.png)](https://travis-ci.org/penn-state-dance-marathon/thon-thinker-lib)
 
 THINKer Library Files
 
