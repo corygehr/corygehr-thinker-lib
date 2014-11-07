@@ -2,11 +2,11 @@
 
 **Build Statuses**
 
-* master
+*master*
 
 [![Build Status](https://travis-ci.org/penn-state-dance-marathon/thon-thinker-lib.svg?branch=master)](https://travis-ci.org/penn-state-dance-marathon/thon-thinker-lib.svg?branch=master)
 
-* development
+*development*
 
 [![Build Status](https://travis-ci.org/penn-state-dance-marathon/thon-thinker-lib.svg?branch=development)](https://travis-ci.org/penn-state-dance-marathon/thon-thinker-lib.svg?branch=development)
 
