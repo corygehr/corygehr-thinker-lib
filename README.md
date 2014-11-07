@@ -1,9 +1,14 @@
-thon-thinker-lib
-============
+##THINKer Library Files
 
-[![Build Status](https://travis-ci.org/penn-state-dance-marathon/thon-thinker-lib.png)](https://travis-ci.org/penn-state-dance-marathon/thon-thinker-lib)
+**Build Statuses**
 
-THINKer Library Files
+* master
+
+[![Build Status](https://travis-ci.org/penn-state-dance-marathon/thon-thinker-lib.svg?branch=master)](https://travis-ci.org/penn-state-dance-marathon/thon-thinker-lib.svg?branch=master)
+
+* development
+
+[![Build Status](https://travis-ci.org/penn-state-dance-marathon/thon-thinker-lib.svg?branch=development)](https://travis-ci.org/penn-state-dance-marathon/thon-thinker-lib.svg?branch=development)
 
 Contains the THINKer Framework Library Files
 
