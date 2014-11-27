@@ -163,6 +163,6 @@ class Session
 	 */
 	public function verifyCsrfToken($inputVarName = 'csrfToken')
 	{
-		return (Thinker\Http\Request::request($inputVarName, true, false) == $_SESSION['CSRF_TOKEN']);
+		return (\Thinker\Http\Request::request($inputVarName, true, false) == $_SESSION['CSRF_TOKEN']);
 	}
 }

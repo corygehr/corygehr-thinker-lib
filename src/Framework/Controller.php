@@ -34,7 +34,7 @@ abstract class Controller
 		if(isset($_GET['view']))
 		{
 			// ucwords() allows users to use views as lowercase in URLs
-			$this->view = ucwords(Thinker\Http\Request::get('view', true));
+			$this->view = ucwords(\Thinker\Http\Request::get('view', true));
 		}
 		else
 		{
@@ -57,7 +57,7 @@ abstract class Controller
 		if(!$this->session->auth('section', array('section' => $_SECTION, 'subsection' => $_SUBSECTION)))
 		{
 			// Redirect to error
-			Thinker\Http\Redirect::error(403);
+			\Thinker\Http\Redirect::error(403);
 		}
 	}
 

@@ -8,11 +8,7 @@
 
 namespace Thinker\DataSource;
 
-// Need to specify PDO class namespace to use it
-use \PDO;
-use \PDOException;
-
-class Database extends PDO
+class Database extends \PDO
 {
 	// Private Class Variables
 	private $driver; 
@@ -74,7 +70,7 @@ class Database extends PDO
 			// '@' suppresses errors from this function. We output our own message if there's a problem
 			@parent::__construct($dsn, $this->user, $this->pass);
 		}
-		catch(PDOException $err)
+		catch(\PDOException $err)
 		{
 			if($dieOnError)
 			{
@@ -82,7 +78,7 @@ class Database extends PDO
 			}
 			else
 			{
-				Thinker\Message::push("Failed to connect to database '" . $this->schema . "'. Details: " . $err->getMessage(), 'error');
+				\Thinker\Framework\Notification::push("Failed to connect to database '" . $this->schema . "'. Details: " . $err->getMessage(), 'error');
 			}
 
 			return false;

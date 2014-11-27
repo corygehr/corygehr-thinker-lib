@@ -9,8 +9,6 @@
 
 namespace Thinker\Framework;
 
-use \Exception;
-
 class View
 {
 	/**
@@ -34,7 +32,7 @@ class View
 			{
 				return new $view($section);
 			}
-			catch(Exception $ex)
+			catch(\Exception $ex)
 			{
 				trigger_error("Could not load View '$view'.");
 			}
@@ -42,7 +40,7 @@ class View
 		else
 		{
 			// Throw an exception
-			throw new Exception("Specified view '$view' does not exist.");
+			throw new \Exception("Specified view '$view' does not exist.");
 		}
 		
 	}
