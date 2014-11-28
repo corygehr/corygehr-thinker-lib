@@ -12,10 +12,11 @@ use \ReflectionClass;
 
 abstract class Controller
 {
-	protected $reflectionClass; // Contains information about the class (ReflectionClass)
-	protected $data;            // Contains the data being passed back from the Section
-	public $session;       		// Contains session object
-	public $view;     			// Contains the view being loaded for the section
+	protected $reflectionClass;         // Contains information about the class (ReflectionClass)
+	protected $data;                    // Contains the data being passed back from the Section
+	protected $allowOpenAccess = false; // Flag to always allow access, if necessary
+	public $session;       		        // Contains session object
+	public $view;     			        // Contains the view being loaded for the section
 	
 	/**
 	 * __construct()
@@ -51,10 +52,10 @@ abstract class Controller
 			// No session specified, assume open site
 			$sessionClass = 'Open';
 		}
-			
+		
 		$this->session = $sessionClass::singleton();
 
-		if(!$this->session->auth('section', array('section' => $_SECTION, 'subsection' => $_SUBSECTION)))
+		if(!$this->session->auth('section', array('section' => $_SECTION, 'subsection' => $_SUBSECTION)) && !$this->allowOpenAccess)
 		{
 			// Redirect to error
 			\Thinker\Http\Redirect::error(403);
