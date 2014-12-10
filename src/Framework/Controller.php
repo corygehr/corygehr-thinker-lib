@@ -55,7 +55,7 @@ abstract class Controller
 		
 		$this->session = $sessionClass::singleton();
 
-		if(!$this->session->auth('section', array('section' => $_SECTION, 'subsection' => $_SUBSECTION)) && !$this->allowOpenAccess)
+		if(!$this->session->auth('section', array('section' => SECTION, 'subsection' => SUBSECTION)) && !$this->allowOpenAccess)
 		{
 			// Redirect to error
 			\Thinker\Http\Redirect::error(403);
@@ -66,11 +66,13 @@ abstract class Controller
 	 * defaultSubsection()
 	 * Gets the default subsection for this section
 	 *
-	 * @abstract
 	 * @access public
 	 * @return string Default Subsection Name
 	 */
-	abstract public static function defaultSubsection();
+	public static function defaultSubsection()
+	{
+		throw new Exception("Must declare a default subsection!");
+	}
 
 	/**
 	 * getData()
