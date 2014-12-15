@@ -71,7 +71,7 @@ abstract class Controller
 	 */
 	public static function defaultSubsection()
 	{
-		throw new Exception("Must declare a default subsection!");
+		throw new \Exception("Must declare a default subsection!");
 	}
 
 	/**
