@@ -18,7 +18,7 @@
  		"source": "https://github.com/penn-state-dance-marathon/thon-thinker-lib"
  	},
  	"require": {
- 		"php": ">=5.4"
+ 		"php": ">=5.3"
  	},
  	"autoload": {
         "psr-4": { 
