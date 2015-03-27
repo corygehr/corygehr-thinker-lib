@@ -170,5 +170,29 @@ class Database extends \PDO
 		// Since this function is only to return one row, only return the first row
 		return $prepQuery->fetch();
 	}
+
+	/**
+	 * fetchClass()
+	 * Returns an object of the specified type, created from the database
+	 *
+	 * @author Cory Gehr
+	 * @access public
+	 * @param string $query MySQL Query String
+	 * @param mixed[] $data Parameters for the query
+	 * @param string $class Class Name
+	 * @return mixed Created object
+	 */
+	public function fetchClass($query, $data, $class)
+	{
+		// Prepare the query
+		$prepQuery = parent::prepare($query);
+		// Change the fetch mode to FETCH_CLASS
+		$prepQuery->setFetchMode(PDO::FETCH_CLASS, $class);
+		// Now execute
+		$prepQuery->execute($data);
+
+		// Return the created class
+		return $prepQuery->fetch();
+	}
 }
 ?>
