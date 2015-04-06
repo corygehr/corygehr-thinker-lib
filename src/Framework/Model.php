@@ -22,7 +22,7 @@ abstract class Model
 	public function __construct()
 	{
 		// Initialize reflectionClass with information about the target class
-		$this->reflectionClass = new ReflectionClass($this);
+		$this->reflectionClass = new \ReflectionClass($this);
 	}
 	
 	/**
