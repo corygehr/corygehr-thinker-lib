@@ -35,10 +35,11 @@ interface PersistInterface {
 	 * Updates data based on its identifier
 	 *
 	 * @access public
-	 * @param mixed $data: Data to be committed
+	 * @param mixed[] $ids Data identifiers
+	 * @param mixed $data Data to be committed
 	 * @return boolean True on Success, False on Failure
 	 */
-	public function update($data);
+	public function update($ids, $data);
 
 	/**
 	 * delete()
