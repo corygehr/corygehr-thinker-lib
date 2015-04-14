@@ -52,6 +52,9 @@ class Redirect {
 		// Create URL
 		$url = Url::create($section, $subsection, $params);
 
+		// Replace &amp; with &
+		$url = str_replace('&amp;', '&', $url);
+
 		// Perform redirect
 		header('Location: ' . $url);
 		exit();
