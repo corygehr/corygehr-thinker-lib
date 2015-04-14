@@ -55,7 +55,7 @@ abstract class Controller
 		
 		$this->session = $sessionClass::singleton();
 
-		if(!$this->session->auth('section', array('section' => SECTION, 'subsection' => SUBSECTION)) && !$this->allowOpenAccess)
+		if(!$this->allowOpenAccess && !$this->session->auth('section', array('section' => SECTION, 'subsection' => SUBSECTION)))
 		{
 			// Redirect to error
 			\Thinker\Http\Redirect::error(403);
