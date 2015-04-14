@@ -39,7 +39,7 @@ class Url {
 
 		if($subsection)
 		{
-			$url .= "&su=" . urlencode($subsection);
+			$url .= "&amp;su=" . urlencode($subsection);
 		}
 		
 		// Add URL Parameters
@@ -47,7 +47,7 @@ class Url {
 		{
 			foreach($params as $key => $value)
 			{
-				$url .= ("&$key=" . urlencode($value));
+				$url .= ("&amp;$key=" . urlencode($value));
 			}
 		}
 		
