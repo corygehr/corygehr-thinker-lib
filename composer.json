@@ -1,9 +1,9 @@
  {
- 	"name": "thon/thinker-lib",
+ 	"name": "corygehr/thinker-lib",
   	"description": "THINKer Framework Core Library",
  	"type": "library",
- 	"keywords": ["framework", "thon"],
- 	"homepage": "https://github.com/penn-state-dance-marathon/thon-thinker-lib",
+ 	"keywords": ["framework"],
+ 	"homepage": "https://github.com/corygehr/corygehr-thinker-lib",
  	"license": "BSD-3-Clause",
  	"authors": [
  		{
@@ -15,7 +15,7 @@
  	],
  	"support": {
  		"email": "gehrc621@gmail.com",
- 		"source": "https://github.com/penn-state-dance-marathon/thon-thinker-lib"
+ 		"source": "https://github.com/corygehr/corygehr-thinker-lib"
  	},
  	"require": {
  		"php": ">=5.3"
